@@ -1,5 +1,7 @@
 :root {
 	--c-accent: #f23030;
+	--c-secondary: #cccccc;
+	--c-tertiary: #808080;
 }
 
 * {
@@ -14,6 +16,11 @@ body {
 	max-width: 80rem;
 	margin: 0 auto;
 	padding: 1rem;
+}
+
+img {
+	/* Removes small margin under images */
+	vertical-align: middle;
 }
 
 a {
@@ -31,9 +38,13 @@ button {
 	padding: 0.25rem 0.5rem;
 	color: var(--c-accent);
 
-	font-size: 12px;
-
 	cursor: pointer;
+}
+
+button,
+input,
+textarea {
+	font-size: 14px;
 }
 
 button:hover {
@@ -41,7 +52,24 @@ button:hover {
 	color: white;
 }
 
-img {
-	/* Removes small margin under images */
-	vertical-align: middle;
+input[type='text'] {
+	border: var(--c-accent) 1px solid;
+	border-radius: 3px;
+	padding: 0.25rem 0.5rem;
+}
+
+input[type='text']::placeholder {
+	color: var(--c-secondary);
+}
+
+textarea {
+	border: var(--c-accent) 1px solid;
+	border-radius: 3px;
+	padding: 0.25rem 0.5rem;
+}
+
+input[type='date'] {
+	border: var(--c-accent) 1px solid;
+	border-radius: 3px;
+	padding: 0.25rem 0.5rem;
 }
