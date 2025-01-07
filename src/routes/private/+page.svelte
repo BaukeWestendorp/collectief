@@ -1,3 +1,13 @@
-<h2>Private route</h2>
+<h2>Your profile</h2>
 
-<a href="/private/add-photo">Add photo</a>
+<ul>
+	<li>
+		<a href="/private/add-photo">Add a photo</a>
+	</li>
+</ul>
+
+<style>
+	h2 {
+		margin-bottom: 1rem;
+	}
+</style>
