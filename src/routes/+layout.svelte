@@ -6,6 +6,8 @@
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
 
+	const userDisplayName = 'Bauke';
+
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
 			if (newSession?.expires_at !== session?.expires_at) {
@@ -31,17 +33,24 @@
 		<a href="/">Home</a>
 	</nav>
 
-	{#if session}
-		<button onclick={logOut}>Log out</button>
-	{:else}
-		<a href="/auth/login">Log in</a>
-	{/if}
+	<div>
+		{#if session}
+			<a href="/private">{userDisplayName}</a>
+			<button onclick={logOut}>Log out</button>
+		{:else}
+			<a href="/auth/login">Log in</a>
+		{/if}
+	</div>
 </header>
 
 {@render children()}
 
 <style>
 	header {
+		padding: 1rem;
 		border: 1px solid black;
+
+		display: flex;
+		justify-content: space-between;
 	}
 </style>
