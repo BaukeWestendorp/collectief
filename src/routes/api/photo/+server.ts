@@ -5,8 +5,12 @@ export const POST: RequestHandler = async ({ request, locals: { supabase, sessio
 	const formData = await request.formData();
 	const title = formData.get('title') as string;
 	const alt = formData.get('alt') as string;
-	const date = formData.get('date') as string;
+	let date: string | null = formData.get('date') as string;
 	const file = formData.get('file') as File;
+
+	if (!title || title === '') return error(400, 'Missing title');
+	if (!file) return error(400, 'Missing file');
+	if (!date || date === '') date = null;
 
 	if (!session) return error(401, 'User is not logged in');
 	const userId = session.user.id;
