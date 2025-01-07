@@ -61,7 +61,7 @@ export type Database = {
         }
         Relationships: []
       }
-      userdata: {
+      profiles: {
         Row: {
           display_name: string
           id: string

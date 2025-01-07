@@ -1,6 +1,8 @@
 import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr';
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
 import type { LayoutLoad } from './$types';
+import { safeProfileDisplayName } from '$lib/utils';
+import type { Tables } from '$lib/database.types';
 
 export const load: LayoutLoad = async ({ data, fetch }) => {
 	const supabase = isBrowser()
@@ -33,5 +35,9 @@ export const load: LayoutLoad = async ({ data, fetch }) => {
 		data: { user }
 	} = await supabase.auth.getUser();
 
-	return { session, supabase, user };
+	let profile: Tables<'profiles'> | null = null;
+	if (user) profile = await (await fetch(`/api/profile/${user.id}`)).json();
+	const userDisplayName = safeProfileDisplayName(profile?.display_name);
+
+	return { session, supabase, user, userDisplayName };
 };

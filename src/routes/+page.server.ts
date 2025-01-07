@@ -1,7 +1,10 @@
 import type { PageServerLoad } from './$types';
+import { safeProfileDisplayName } from '$lib/utils';
+import type { Tables } from '$lib/database.types';
 
-export const load: PageServerLoad = async ({ locals: { supabase }, depends }) => {
+export const load: PageServerLoad = async ({ locals: { supabase }, depends, fetch }) => {
 	depends('supabase:db:photos');
+	depends('supabase:db:profiles');
 
 	const response = await supabase
 		.from('photos')
@@ -22,15 +25,9 @@ export const load: PageServerLoad = async ({ locals: { supabase }, depends }) =>
 				data: { publicUrl: url }
 			} = supabase.storage.from('photos').getPublicUrl(`${userId}/${photoId}.jpg`);
 
-			const { data: userData, error } = await supabase
-				.from('userdata')
-				.select('display_name')
-				.eq('id', userId)
-				.single();
-			if (error) {
-				console.error(`Failed to get user display name: ${error}`);
-			}
-			const userDisplayName = userData?.display_name ?? '[Unknown User]';
+			const profile: Tables<'profiles'> = await (await fetch(`/api/profile/${userId}`)).json();
+			const userDisplayName = safeProfileDisplayName(profile.display_name);
+
 			return { ...photo, url, userDisplayName };
 		})
 	);
