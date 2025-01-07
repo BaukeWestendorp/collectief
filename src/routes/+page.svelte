@@ -27,9 +27,6 @@
 		gap: 2rem;
 	}
 
-	.image {
-	}
-
 	.image .info {
 		background: #f0f0f0;
 		display: flex;
