@@ -27,6 +27,18 @@
 		gap: 2rem;
 	}
 
+	@media (max-width: 1000px) {
+		.images {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.images {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	.image .info {
 		background: #f0f0f0;
 		display: flex;
