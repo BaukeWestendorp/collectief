@@ -3,7 +3,6 @@
 	let { recentPhotos } = $derived(data);
 </script>
 
-<h1>Collectief!</h1>
 <div class="images">
 	{#each recentPhotos as photo}
 		<div class="image">

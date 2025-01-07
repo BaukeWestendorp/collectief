@@ -27,11 +27,9 @@
 </script>
 
 <header>
-	<nav>
-		<a href="/">Home</a>
-	</nav>
+	<a href="/"><h1>Collectief</h1></a>
 
-	<div>
+	<div class="account">
 		{#if session}
 			<a href="/private">{userDisplayName}</a>
 			<button onclick={logOut}>Log out</button>
@@ -41,14 +39,25 @@
 	</div>
 </header>
 
-{@render children()}
+<main>
+	{@render children()}
+</main>
 
 <style>
 	header {
-		padding: 1rem;
-		border: 1px solid black;
-
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+
+		border-bottom: 1px dashed var(--c-accent);
+	}
+
+	header .account {
+		display: flex;
+		gap: 1em;
+		align-items: center;
 	}
 </style>
