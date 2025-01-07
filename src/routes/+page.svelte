@@ -6,28 +6,48 @@
 <div class="images">
 	{#each recentPhotos as photo}
 		<div class="image">
-			<h2>{photo.title}</h2>
 			<img src={photo.url} alt={photo.alt} />
-			<p>{photo.alt}</p>
-			<p>{photo.date}</p>
-			<p>{photo.userDisplayName}</p>
+			<div class="info">
+				<h2 class="title">{photo.title}</h2>
+				<p class="alt">{photo.alt}</p>
+				<div class="meta">
+					<p>{photo.date}</p>
+					<p>{photo.userDisplayName}</p>
+				</div>
+			</div>
 		</div>
 	{/each}
 </div>
 
 <style>
 	.images {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-		align-items: flex-start;
-		margin-top: var(--spacing);
-		gap: var(--spacing);
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
 	}
 
 	.image {
-		width: 400px;
-		max-width: 100%;
+	}
+
+	.image .info {
+		background: #f0f0f0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.image .alt {
+		font-style: italic;
+		opacity: 0.8;
+	}
+
+	.image .meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		opacity: 0.5;
 	}
 
 	img {

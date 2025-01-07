@@ -38,3 +38,8 @@ button:hover {
 	background: var(--c-accent);
 	color: white;
 }
+
+img {
+	/* Removes small margin under images */
+	vertical-align: middle;
+}
