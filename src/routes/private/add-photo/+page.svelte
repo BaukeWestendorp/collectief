@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 </script>
 
-<form method="POST" enctype="multipart/form-data" use:enhance>
+<form method="POST" action="/api/photo" enctype="multipart/form-data" use:enhance>
 	<input name="title" type="text" />
 	<textarea name="alt"></textarea>
 	<input name="date" type="date" />
