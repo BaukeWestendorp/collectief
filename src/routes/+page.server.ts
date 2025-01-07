@@ -1,6 +1,8 @@
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals: { supabase } }) => {
+export const load: PageServerLoad = async ({ locals: { supabase }, depends }) => {
+	depends('supabase:db:photos');
+
 	const response = await supabase
 		.from('photos')
 		.select('id, title, alt, date, user_id')
@@ -28,7 +30,7 @@ export const load: PageServerLoad = async ({ locals: { supabase } }) => {
 			if (error) {
 				console.error(`Failed to get user display name: ${error}`);
 			}
-			const userDisplayName = userData?.display_name ?? 'Unknown user';
+			const userDisplayName = userData?.display_name ?? '[Unknown User]';
 			return { ...photo, url, userDisplayName };
 		})
 	);
