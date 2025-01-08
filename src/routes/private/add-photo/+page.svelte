@@ -62,36 +62,6 @@
 		margin-bottom: 1rem;
 	}
 
-	form {
-		width: 100%;
-		max-width: 24rem;
-
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 1em;
-	}
-
-	textarea {
-		min-height: 5em;
-		width: 100%;
-		resize: none;
-	}
-
-	input[type='date'] {
-		width: fit-content;
-	}
-
-	label {
-		width: 100%;
-
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-
-		gap: 0.25rem;
-	}
-
 	.file-picker {
 		width: 100%;
 		padding: 0;

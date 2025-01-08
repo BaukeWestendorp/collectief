@@ -52,13 +52,18 @@ button:hover {
 	color: white;
 }
 
-input[type='text'] {
+input {
 	border: var(--c-accent) 1px solid;
 	border-radius: 3px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
 	padding: 0.25rem 0.5rem;
 }
 
-input[type='text']::placeholder {
+input::placeholder {
 	color: var(--c-secondary);
 }
 
@@ -72,4 +77,34 @@ input[type='date'] {
 	border: var(--c-accent) 1px solid;
 	border-radius: 3px;
 	padding: 0.25rem 0.5rem;
+}
+
+form {
+	width: 100%;
+	max-width: 24rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1em;
+}
+
+form textarea {
+	min-height: 5em;
+	width: 100%;
+	resize: none;
+}
+
+form input[type='date'] {
+	width: fit-content;
+}
+
+form label {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	gap: 0.25rem;
 }
